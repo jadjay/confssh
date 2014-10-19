@@ -1,13 +1,14 @@
 #!/usr/bin/env ruby
 
-args=ARGV
-$debug="on"
-$errors = {
+args = ARGV
+debug = "on"
+errors = {
   badarg: [ 1, "bad argument" ],
   other: [ 2, "" ],
 }
+file = "../config"
 
-$commands = {
+commands = {
   create: "",
   list: "",
   remove: "",
@@ -21,11 +22,11 @@ def usage()
   "
 end
 
-def exiting( error, switch=$debug )
-  if switch == "on"
-    print "error: %s\n" % $errors[error][1]
+def exiting( errors, error, debug )
+  if debug == "on"
+    print "error: %s\n" % errors[error][1]
   end
-  exit $errors[error][0]
+  exit errors[error][0]
 end
 
 def create( chaine )
@@ -34,6 +35,10 @@ end
 
 def list( chaine )
   print "%s : %s\n" %  ['list',chaine]
+end
+
+def notify verb, action
+  print "%s : %s\n" %  ['remove',chaine]
 end
 
 def remove( chaine )
@@ -45,9 +50,9 @@ def modify( chaine )
 end
 
 
-if args[0].nil? or not $commands.member? args[0].to_s.to_sym 
+if args[0].nil? or not commands.member? args[0].to_s.to_sym 
   usage()
-  exiting(:badarg)
+  exiting( errors, :badarg, debug)
 end
 
 commande = args[0]
