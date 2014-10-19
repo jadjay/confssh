@@ -68,4 +68,3 @@ commande = args[0]
 arguments = args[1..-1].join(' ')
 send commande, arguments
 
-# vim: ai ts=2 sts=2 et sw=2 ft=ruby
